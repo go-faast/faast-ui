@@ -29,8 +29,8 @@ export default class Example extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="faded" light expand="md">
-          <NavbarBrand href="/">reactstrap</NavbarBrand>
+        <Navbar color="dark" dark expand="sm">
+          <NavbarBrand href="/">faast-ui</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -38,7 +38,10 @@ export default class Example extends React.Component {
                 <NavLink href="/components/">Components</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">Github</NavLink>
+                <NavLink href="/utilities/">Utilities</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="https://github.com/go-faast/faast-ui">GitHub</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>

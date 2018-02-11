@@ -20,7 +20,7 @@ export default class UINav extends React.Component {
   }
   render() {
     return (
-      <Navbar className="header" color="dark" dark expand="md">
+      <Navbar className="header" color="dark" dark expand="sm">
         <Container>
           <NavbarBrand className="mr-auto" tag={Link} to="/">faast-ui</NavbarBrand>
           <NavbarToggler onClick={this.toggleNavbar} />
@@ -33,7 +33,7 @@ export default class UINav extends React.Component {
                 <NavLink tag={RouterNavLink} to="/utilities/">Utilities</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/go-faast/faast-ui">Github</NavLink>
+                <NavLink href="https://github.com/go-faast/faast-ui">GitHub</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
