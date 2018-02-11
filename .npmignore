@@ -1,0 +1,6 @@
+build/
+demo/
+webpack.config.*
+.*rc
+.editorconfig
+.eslintrc.json
