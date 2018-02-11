@@ -1,7 +1,26 @@
 # faast-ui
 A reusable Bootstrap 4 theme and set of React components for use across [faa.st](https://faa.st) products.
 
-## Getting started
+## Documentation
+
+- [Bootstrap 4](https://getbootstrap.com/docs/4.0)
+- [Reactstrap](https://reactstrap.github.io)
+
+## Development
+
+Install dependencies:
+
+```sh
+npm install
+```
+
+Run examples at [http://localhost:8080/](http://localhost:8080/) with webpack dev server:
+
+```sh
+npm start
+```
+
+## Usage
 
 ### Installation
 
@@ -30,21 +49,3 @@ These libraries are not bundled with faast-ui and are required at runtime:
   * [**react**](https://www.npmjs.com/package/react)
   * [**react-dom**](https://www.npmjs.com/package/react-dom)
   * [**reactstrap**](https://www.npmjs.com/package/reactstrap)
-
-## [Documentation](https://reactstrap.github.io)
-
-https://reactstrap.github.io
-
-## Development
-
-Install dependencies:
-
-```sh
-npm install
-```
-
-Run examples at [http://localhost:8080/](http://localhost:8080/) with webpack dev server:
-
-```sh
-npm start
-```
