@@ -9,7 +9,7 @@ import {
   DropdownToggle,
   DropdownItem,
   DropdownMenu } from 'reactstrap';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import UI from '../UI';
 
 import ButtonGroupExample from '../examples/ButtonGroup';

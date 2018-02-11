@@ -5,7 +5,7 @@ import Helmet from 'react-helmet';
 import LayoutExample from '../examples/Layout';
 const LayoutExampleSource = require('!!raw!../examples/Layout');
 
-export default class LayoutsPage extends React.Component {
+export default class LayoutPage extends React.Component {
   render() {
     return (
       <div>

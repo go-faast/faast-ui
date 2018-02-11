@@ -1,6 +1,6 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
 import {
@@ -19,7 +19,7 @@ const DropdownExampleSource = require('!!raw!../examples/Dropdown');
 const CustomDropdownExampleSource = require('!!raw!../examples/CustomDropdown');
 const DropdownUncontrolledExampleSource = require('!!raw!../examples/DropdownUncontrolled');
 
-export default class DropdownPage extends React.Component {
+export default class DropdownsPage extends React.Component {
   constructor(props) {
     super(props);
 

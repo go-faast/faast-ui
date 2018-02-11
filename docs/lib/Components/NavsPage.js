@@ -11,7 +11,7 @@ const NavTabsExampleSource = require('!!raw!../examples/NavTabs');
 import NavPillsExample from '../examples/NavPills';
 const NavPillsExampleSource = require('!!raw!../examples/NavPills');
 
-export default class NavssPage extends React.Component {
+export default class NavsPage extends React.Component {
   render() {
     return (
       <div>

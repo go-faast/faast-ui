@@ -1,6 +1,6 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
 import NavbarExample from '../examples/Navbar';
@@ -8,7 +8,7 @@ const NavbarExampleSource = require('!!raw!../examples/Navbar');
 import NavbarTogglerExample from '../examples/NavbarToggler';
 const NavbarTogglerExampleSource = require('!!raw!../examples/NavbarToggler');
 
-export default class NavsPage extends React.Component {
+export default class NavbarPage extends React.Component {
   render() {
     return (
       <div>
