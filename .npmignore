@@ -1,5 +1,5 @@
 build/
-demo/
+docs/
 webpack.config.*
 .*rc
 .editorconfig

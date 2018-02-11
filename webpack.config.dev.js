@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const env = process.env.WEBPACK_ENV || 'development'
 const libraryWebpackConfig = require('./webpack.config.base')(env)
@@ -19,7 +20,7 @@ const config = [
       }
     },
     entry: {
-      demo: path.resolve('./demo'),
+      docs: path.resolve('./docs/lib/app'),
     },
     node: {
       fs: 'empty'
@@ -32,14 +33,14 @@ const config = [
     },
     plugins: [
       new CleanWebpackPlugin([outputPath]),
-      new webpack.NoEmitOnErrorsPlugin(),
+      new CopyWebpackPlugin([{ from: './docs/static', to: 'assets' }]),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(env)
       }),
       new webpack.optimize.OccurrenceOrderPlugin(),
       new ExtractTextPlugin('[name].style.css'),
       new HtmlWebpackPlugin({
-        template: path.resolve('./demo/index.html'),
+        template: path.resolve('./docs/index.template.html'),
         filename: 'index.html'
       }),
     ],
@@ -48,8 +49,11 @@ const config = [
       extensions: ['.js', '.jsx', '.css', '.scss'],
       alias: {
         'faast-ui': path.resolve('./src')
-      }
-    }
+      },
+    },
+    resolveLoader: {
+      moduleExtensions: ['-loader']
+    },
   }
 ]
 

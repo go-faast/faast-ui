@@ -2,7 +2,3 @@
 @import 'variables';
 
 $navbar-height: $navbar-brand-height + 2 * ($navbar-brand-padding-y + $navbar-padding-y);
-
-body {
-  padding-top: $navbar-height;
-}
