@@ -4,7 +4,10 @@
   "description": "Faast UI theme and component library",
   "author": "Dylan Seago <dylan@bitaccess.co>",
   "license": "MIT",
-  "main": "dist/faastui.min.js",
+  "main": "dist/js/faast-ui",
+  "module": "src/components",
+  "style": "dist/css/faast-ui.css",
+  "sass": "src/style/index.scss",
   "scripts": {
     "build": "cross-env webpack",
     "start": "cross-env webpack-dev-server --config ./webpack.config.dev.js --watch"

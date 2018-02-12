@@ -33,17 +33,20 @@ module.exports = (env) => {
         mangle: true
       }
     }))
-    outputFile = '[name].min.js'
-    outputCssFile = '[name].min.css'
-    cssIdentName = '[name]-[hash:base64:6]'
     minify = true
+    outputFile = 'js/[name].min.js'
+    outputCssFile = 'css/[name].min.css'
+    cssIdentName = '[name]-[hash:base64:6]'
   } else {
-    outputFile = '[name].js'
-    outputCssFile = '[name].css'
-    cssIdentName = '[name]__[local]__[hash:base64:6]'
     minify = false
+    outputFile = 'js/[name].js'
+    outputCssFile = 'css/[name].css'
+    cssIdentName = '[name]__[local]__[hash:base64:6]'
   }
-  plugins.push(new ExtractTextPlugin(outputCssFile))
+  plugins.push(new ExtractTextPlugin({
+    filename: outputCssFile,
+    allChunks: true,
+  }))
 
   const config = {
     entry: {

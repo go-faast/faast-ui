@@ -40,7 +40,7 @@ export default () => {
             </pre>
             <p>Import faast-ui CSS somewhere in in the entrypoint of your app (e.g. <code>src/index.js</code> for create-react-app):</p>
             <pre>
-              <PrismCode className="language-bash">import 'faast-ui/dist/style.css'</PrismCode>
+              <PrismCode className="language-bash">import 'faast-ui/dist/css/faast-ui.css'</PrismCode>
             </pre>
             <p>Import the components you need</p>
             <div className="docs-example">
