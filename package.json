@@ -4,6 +4,11 @@
   "description": "Faast UI theme and component library",
   "author": "Dylan Seago <dylan@bitaccess.co>",
   "license": "MIT",
+  "homepage": "http://github.com/go-faast/faast-ui",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/go-faast/faast-ui.git"
+  },
   "main": "dist/js/faast-ui",
   "module": "src/components",
   "style": "dist/css/faast-ui.css",
