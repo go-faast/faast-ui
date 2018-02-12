@@ -27,7 +27,10 @@ export default class UINav extends React.Component {
           <Collapse navbar isOpen={this.state.showNavbar}>
             <Nav navbar className="ml-sm-auto">
               <NavItem>
-                <NavLink tag={RouterNavLink} to="/components/" activeClassName="active">Components</NavLink>
+                <NavLink tag={RouterNavLink} to="/sandbox/" activeClassName="active">Sandbox</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={RouterNavLink} to="/components/" activeClassName="active">Reactstrap</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink tag={RouterNavLink} to="/utilities/">Utilities</NavLink>
