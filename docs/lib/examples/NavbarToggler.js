@@ -19,7 +19,7 @@ export default class Example extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="dark" dark>
+        <Navbar color="ultra-dark" dark>
           <NavbarBrand href="/" className="mr-auto">faast-ui</NavbarBrand>
           <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
           <Collapse isOpen={!this.state.collapsed} navbar>
