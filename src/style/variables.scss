@@ -54,8 +54,8 @@ $pink:    #e83e8c;
 $red:     #BC1515;
 $orange:  #fd7e14;
 $yellow:  #FACC2E;
-$green:   #0dd390;
-$teal:    #0dd3b9;
+$green:   #119611;
+$teal:    #0D7171;
 $cyan:    #17a2b8;
 
 $colors: ();
@@ -73,8 +73,8 @@ $colors: map-merge((
   "white":      $white
 ), $colors);
 
-$primary:       $teal;
-$secondary:     $green;
+$primary:       #05B8AB;
+$secondary:     #05C76A;
 $success:       $green;
 $info:          $cyan;
 $warning:       $yellow;
@@ -83,6 +83,9 @@ $light:         $grey-light;
 $grey:          $grey-medium;
 $dark:          $grey-dark;
 $ultra-dark:    $grey-ultra-dark;
+$bg-color:        #121212;
+$bg-accent-color: lighten($bg-color, 5%);
+
 
 $theme-colors: ();
 $theme-colors: map-merge((
@@ -96,7 +99,7 @@ $theme-colors: map-merge((
   "grey":       $grey,
   "dark":       $dark,
   "ultra-dark": $ultra-dark,
-  "dark-navbar": #222,
+  "dark-navbar": $bg-accent-color,
 ), $theme-colors);
 // stylelint-enable
 
@@ -107,7 +110,7 @@ $theme-color-interval:      8%;
 $yiq-contrasted-threshold: 150;
 
 // Customize the light and dark text colors for use in our YIQ color contrast function.
-$yiq-text-dark: $grey-900;
+$yiq-text-dark: $black;
 $yiq-text-light: $white;
 
 // Options
@@ -157,8 +160,8 @@ $sizes: map-merge((
 //
 // Settings for the `<body>` element.
 
-$body-bg:                   #121212;
-$body-accent-bg:            lighten($body-bg, 5%);
+$body-bg:                   $bg-color;
+$body-accent-bg:            $bg-accent-color;
 $body-color:                $grey-light;
 
 // Links
@@ -361,7 +364,7 @@ $input-btn-padding-x:         1.25rem;
 $input-btn-line-height:       $line-height-base;
 
 $input-btn-focus-width:       .2rem;
-$input-btn-focus-color:       rgba($component-active-bg, .25);
+$input-btn-focus-color:       rgba($white, .25);
 $input-btn-focus-box-shadow:  0 0 0 $input-btn-focus-width $input-btn-focus-color;
 
 $input-btn-padding-y-sm:      .25rem;
@@ -917,9 +920,9 @@ $kbd-padding-y:                     .2rem;
 $kbd-padding-x:                     .4rem;
 $kbd-font-size:                     $code-font-size;
 $kbd-color:                         $grey-light;
-$kbd-bg:                            $body-accent-bg;
+$kbd-bg:                            $component-bg;
 
-$pre-color:                         $body-accent-bg;
+$pre-color:                         $component-color;
 $pre-scrollable-max-height:         340px;
 
 
