@@ -85,6 +85,7 @@ footer p {
   position: relative;
   padding: 3em 1em 1em;
   margin: 1.5rem 0 0;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .docs-example::before {
@@ -108,6 +109,7 @@ footer p {
 }
 
 .docs-example + pre {
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-top: none;
   padding: 1em;
   margin-top: 0 !important;
@@ -189,7 +191,7 @@ footer p {
  
  :not(pre) > code[class*="language-"],
  pre[class*="language-"] {
-   background: #272822;
+   background: #181818;
  }
  
  /* Inline code */
