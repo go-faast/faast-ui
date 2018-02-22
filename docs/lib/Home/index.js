@@ -36,11 +36,15 @@ export default () => {
             <h3 className="mt-5">NPM</h3>
             <p>Install faast-ui and peer dependencies via NPM</p>
             <pre>
-              <PrismCode className="language-bash">npm install --save faast-ui reactstrap react react-dom</PrismCode>
+              <PrismCode className="language-bash">npm install --save go-faast/faast-ui reactstrap react react-dom</PrismCode>
             </pre>
             <p>Import faast-ui CSS somewhere in in the entrypoint of your app (e.g. <code>src/index.js</code> for create-react-app):</p>
             <pre>
-              <PrismCode className="language-bash">import 'faast-ui/dist/css/faast-ui.css'</PrismCode>
+              <PrismCode className="language-jsx">import 'faast-ui/dist/css/faast-ui.css'</PrismCode>
+            </pre>
+            <p>or, directly import in your scss to have access to all bootstrap variables and mixins:</p>
+            <pre>
+              <PrismCode className="language-scss">@import '~faast-ui/src/style/index.scss';</PrismCode>
             </pre>
             <p>Import the components you need</p>
             <div className="docs-example">

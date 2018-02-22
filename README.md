@@ -27,13 +27,19 @@ npm start
 Install faast-ui and peer-dependencies via NPM:
 
 ```
-npm install --save faast-ui reactstrap react react-dom
+npm install --save go-faast/faast-ui reactstrap react react-dom
 ```
 
 Import faast-ui CSS somewhere in in the entrypoint of your app (e.g. `src/index.js` for create-react-app):
 
 ```js
 import 'faast-ui/dist/css/faast-ui.css'
+```
+
+or, directly import in your scss to have access to all bootstrap variables and mixins:
+
+```scss
+@import '~faast-ui/src/style/index.scss';
 ```
 
 Import the components you need:
