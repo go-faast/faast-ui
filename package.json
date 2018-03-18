@@ -61,7 +61,7 @@
     "reactstrap": "^5.0.0-beta",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.20.1",
-    "uglifyjs-webpack-plugin": "^1.1.8",
+    "uglifyjs-webpack-plugin": "^1.2.4",
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.1"
   }
