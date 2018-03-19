@@ -90,7 +90,10 @@ module.exports = (env) => {
             loader: 'sass-loader', // compiles SASS to CSS
             options: {
               sourceMap: true,
-              includePaths: [path.resolve('./node_modules')]
+              includePaths: [path.resolve('./node_modules')],
+              sourceMapContents: true,
+              outputStyle: 'expanded',
+              precision: 6
             }
           }]
         })
