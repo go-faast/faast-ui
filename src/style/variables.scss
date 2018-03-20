@@ -80,7 +80,7 @@ $colors: map-merge((
 
 $primary:       #05B8AB;
 $secondary:     #05C76A;
-$success:       $green;
+$success:       $secondary;
 $info:          $cyan;
 $warning:       $yellow;
 $danger:        $red;
@@ -108,6 +108,12 @@ $theme-colors: map-merge((
   "dark-navbar": $bg-accent-color,
 ), $theme-colors);
 // stylelint-enable
+
+@each $theme, $color in $theme-colors {
+  :export {
+    themeColor-#{$theme}: $color;
+  }
+}
 
 // Set a specific jump point for requesting color jumps
 $theme-color-interval:      8%;
@@ -208,7 +214,7 @@ $grid-breakpoints: (
 // Define the maximum width of `.container` for different screen sizes.
 
 $container-max-widths: (
-  xs: 100%,
+  xs: map-get($grid-breakpoints, sm), // 100% width
   sm: map-get($grid-breakpoints, sm),
   md: map-get($grid-breakpoints, md),
   lg: map-get($grid-breakpoints, lg),
@@ -366,8 +372,8 @@ $hr-margin-y:                 $spacer;
 //
 // Customizes the `.table` component with basic values, each used across all table variations.
 
-$table-cell-padding:          .75rem;
-$table-cell-padding-sm:       .3rem;
+$table-cell-padding:          .5rem;
+$table-cell-padding-sm:       .25rem;
 
 $table-bg:                    $component-bg;
 $table-accent-bg:             $component-accent-bg;
