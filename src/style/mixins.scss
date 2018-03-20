@@ -1,0 +1,41 @@
+@import '~bootstrap/scss/mixins';
+
+@mixin col {
+  > .col,
+  > [class*="col-"] {
+    @content;
+  }
+}
+
+@mixin focus {
+  &:focus, &.focus {
+    @content;
+  }
+}
+
+@mixin active {
+  &:active, &.active {
+    @content;
+  }
+}
+
+@mixin disabled {
+  &:disabled, &.disabled {
+    @content;
+  }
+}
+
+@mixin not-disabled {
+  &:not(:disabled):not(.disabled) {
+    @content;
+  }
+}
+
+// Match selector used in bootstrap/scss/mixins/_buttons.scss
+@mixin btn-variant-active {
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active,
+  .show > &.dropdown-toggle {
+    @content;
+  }
+}

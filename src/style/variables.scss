@@ -6,7 +6,8 @@
 // Variables should follow the `$component-state-property-size` formula for
 // consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
 
-@import '~bootstrap/scss/functions';
+@import 'functions';
+@import 'mixins';
 
 //
 // Color system
@@ -14,21 +15,25 @@
 
 // stylelint-disable
 $white:    #fff;
-$grey-100: #f8f9fa;
-$grey-200: #e9ecef;
-$grey-300: #dee2e6;
-$grey-400: #ced4da;
-$grey-500: #adb5bd;
-$grey-600: #6c757d;
-$grey-700: #495057;
-$grey-800: #343a40;
-$grey-900: #212529;
+$grey-50:  #fafafa;
+$grey-100: #f5f5f5;
+$grey-200: #eeeeee;
+$grey-300: #e0e0e0;
+$grey-400: #bdbdbd;
+$grey-500: #9e9e9e;
+$grey-600: #757575;
+$grey-700: #616161;
+$grey-800: #424242;
+$grey-850: #303030;
+$grey-900: #212121;
+$grey-925: #181818;
+$grey-950: #101010;
 $black:    #000;
 
-$grey-ultra-dark: #181818;
-$grey-dark: #323232;
-$grey-medium: #a9a9a9;
-$grey-light: #efefef;
+$grey-ultra-dark: $grey-925;
+$grey-dark: $grey-800;
+$grey-medium: $grey-500;
+$grey-light: $grey-100;
 
 $greys: ();
 $greys: map-merge((
@@ -83,13 +88,14 @@ $light:         $grey-light;
 $grey:          $grey-medium;
 $dark:          $grey-dark;
 $ultra-dark:    $grey-ultra-dark;
-$bg-color:        #121212;
-$bg-accent-color: lighten($bg-color, 5%);
+$bg-color:        $grey-950;
+$bg-accent-color: $grey-900;
 
 
 $theme-colors: ();
 $theme-colors: map-merge((
   "primary":    $primary,
+  "faast":      $primary,
   "secondary":  $secondary,
   "success":    $success,
   "info":       $info,
@@ -107,7 +113,7 @@ $theme-colors: map-merge((
 $theme-color-interval:      8%;
 
 // The yiq lightness value that determines when the lightness of color changes from "dark" to "light". Acceptable values are between 0 and 255.
-$yiq-contrasted-threshold: 150;
+$yiq-contrasted-threshold: 120;
 
 // Customize the light and dark text colors for use in our YIQ color contrast function.
 $yiq-text-dark: $black;
@@ -185,17 +191,16 @@ $paragraph-margin-bottom:   1rem;
 // Define the minimum dimensions at which your layout will change,
 // adapting to different screen sizes, for use in media queries.
 
+$grid-spacer: 12px; // Use 12px to ensure row widths are evenly divisible into 12 columns
+
 $grid-breakpoints: (
   xxs: 0,
-  xs: 400px,
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px
+  xs: (36 * $grid-spacer),
+  sm: (48 * $grid-spacer),
+  md: (64 * $grid-spacer),
+  lg: (82 * $grid-spacer),
+  xl: (100 * $grid-spacer),
 );
-
-@include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
-@include _assert-starts-at-zero($grid-breakpoints);
 
 
 // Grid containers
@@ -203,14 +208,12 @@ $grid-breakpoints: (
 // Define the maximum width of `.container` for different screen sizes.
 
 $container-max-widths: (
-  xs: 368px,
-  sm: 540px,
-  md: 720px,
-  lg: 960px,
-  xl: 1140px
+  xs: 100%,
+  sm: map-get($grid-breakpoints, sm),
+  md: map-get($grid-breakpoints, md),
+  lg: map-get($grid-breakpoints, lg),
+  xl: map-get($grid-breakpoints, xl)
 );
-
-@include _assert-ascending($container-max-widths, "$container-max-widths");
 
 
 // Grid columns
@@ -218,29 +221,60 @@ $container-max-widths: (
 // Set the number of columns and specify the width of the gutters.
 
 $grid-columns:                12;
-$grid-gutter-width:           32px;
+
+// Custom gutter widths for class `gutter[x|y]-[{breakpoint}-]{size}`
+$grid-gutter-widths-custom: (
+  0: 0px,
+  1: 2px,
+  2: ($grid-spacer / 2),
+  3: ($grid-spacer),
+  4: ($grid-spacer * 2),
+  5: ($grid-spacer * 3)
+);
+
+// Default gutter size
+$grid-gutter-width:           map-get($grid-gutter-widths-custom, 4);
+
 
 // Components
 //
 // Define common padding and border radius sizes and more.
 
+$component-accent-color-lighten:    2.5%;
+$component-hover-color-lighten:     5%;
+$component-active-color-lighten:    7.5%;
+$component-border-color-lighten:    8%;
+
+@function bg-border-color($color-bg) {
+  @return lighten($color-bg, $component-border-color-lighten);
+}
+
 $component-color:             $body-color;
 $component-disabled-color:    $grey-medium;
-$component-accent-color:      lighten($component-color, 2.5%);
-$component-hover-color:       lighten($component-color, 5%);
-$component-active-color:      lighten($component-color, 10%);
+$component-accent-color:      lighten($component-color, $component-accent-color-lighten);
+$component-hover-color:       lighten($component-color, $component-hover-color-lighten);
+$component-active-color:      lighten($component-color, $component-active-color-lighten);
 
 $component-bg:                $grey-ultra-dark;
 $component-disabled-bg:       $component-bg;
-$component-accent-bg:         lighten($component-bg, 2.5%);
-$component-hover-bg:          lighten($component-bg, 5%);
-$component-active-bg:         lighten($component-bg, 10%);
+$component-accent-bg:         lighten($component-bg, $component-accent-color-lighten);
+$component-hover-bg:          lighten($component-bg, $component-hover-color-lighten);
+$component-active-bg:         lighten($component-bg, $component-active-color-lighten);
+
+$component-border-color:          lighten($component-bg, $component-border-color-lighten);
+$component-disabled-border-color: lighten($component-disabled-bg, $component-border-color-lighten);
+$component-accent-border-color:   lighten($component-accent-bg, $component-border-color-lighten);
+$component-hover-border-color:    lighten($component-hover-bg, $component-border-color-lighten);
+$component-active-border-color:   lighten($component-active-bg, $component-border-color-lighten);
+
+$component-border-width:      1px;
+$component-border:            $component-border-width solid $component-border-color;
 
 $line-height-lg:              1.5;
 $line-height-sm:              1.5;
 
-$border-width:                1px;
-$border-color:                rgba(255, 255, 255, 0.05);
+$border-width:                $component-border-width;
+$border-color:                $component-border-color;
 
 $border-radius:               0;
 $border-radius-lg:            0;
@@ -340,8 +374,8 @@ $table-accent-bg:             $component-accent-bg;
 $table-hover-bg:              $component-hover-bg;
 $table-active-bg:             $component-active-bg;
 
-$table-border-width:          $border-width;
-$table-border-color:          $border-color;
+$table-border-width:          $component-border-width;
+$table-border-color:          $component-border-color;
 
 $table-head-bg:               $component-hover-bg;
 $table-head-color:            theme-color("primary");
@@ -349,8 +383,8 @@ $table-head-color:            theme-color("primary");
 $table-dark-bg:               $component-bg;
 $table-dark-accent-bg:        $component-accent-bg;
 $table-dark-hover-bg:         $component-hover-bg;
-$table-dark-border-color:     $border-color;
-$table-dark-color:            $body-color;
+$table-dark-border-color:     $component-border-color;
+$table-dark-color:            $component-color;
 
 $table-striped-order:         odd;
 
@@ -363,7 +397,7 @@ $input-btn-padding-y:         .5rem;
 $input-btn-padding-x:         1.25rem;
 $input-btn-line-height:       $line-height-base;
 
-$input-btn-focus-width:       .2rem;
+$input-btn-focus-width:       2px;
 $input-btn-focus-color:       rgba($white, .25);
 $input-btn-focus-box-shadow:  0 0 0 $input-btn-focus-width $input-btn-focus-color;
 
@@ -397,11 +431,11 @@ $btn-line-height-lg:          $input-btn-line-height-lg;
 $btn-border-width:            $input-btn-border-width;
 
 $btn-font-weight:             $font-weight-normal;
-$btn-box-shadow:              inset 0 1px 0 rgba($white, .15), 0 1px 1px rgba($white, .075);
+$btn-box-shadow:              none;
 $btn-focus-width:             $input-btn-focus-width;
 $btn-focus-box-shadow:        $input-btn-focus-box-shadow;
 $btn-disabled-opacity:        .65;
-$btn-active-box-shadow:       inset 0 3px 5px rgba($white, .125);
+$btn-active-box-shadow:       none;
 
 $btn-link-disabled-color:     $grey-medium;
 
@@ -412,7 +446,7 @@ $btn-border-radius:           $border-radius;
 $btn-border-radius-lg:        $border-radius-lg;
 $btn-border-radius-sm:        $border-radius-sm;
 
-$btn-transition:              color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+$btn-transition:              color .05s ease-in-out, background-color .05s ease-in-out, border-color .05s ease-in-out, box-shadow .05s ease-in-out;
 
 
 // Forms
@@ -429,11 +463,11 @@ $input-padding-y-lg:                    $input-btn-padding-y-lg;
 $input-padding-x-lg:                    $input-btn-padding-x-lg;
 $input-line-height-lg:                  $input-btn-line-height-lg;
 
-$input-bg:                              $grey-dark;
-$input-disabled-bg:                     darken($input-bg, 5%);
+$input-bg:                              $component-bg;
+$input-disabled-bg:                     $component-disabled-bg;
 
-$input-color:                           $body-color;
-$input-border-color:                    lighten($input-bg, 5%);
+$input-color:                           $component-color;
+$input-border-color:                    $component-border-color;
 $input-border-width:                    $input-btn-border-width;
 $input-box-shadow:                      inset 0 1px 1px rgba($white, .075);
 
@@ -441,9 +475,9 @@ $input-border-radius:                   $border-radius;
 $input-border-radius-lg:                $border-radius-lg;
 $input-border-radius-sm:                $border-radius-sm;
 
-$input-focus-bg:                        lighten($input-bg, 2.5%);
-$input-focus-border-color:              lighten($input-focus-bg, 10%);
-$input-focus-color:                     $input-color;
+$input-focus-bg:                        $component-accent-bg;
+$input-focus-border-color:              $component-border-color;
+$input-focus-color:                     $primary;
 $input-focus-width:                     $input-btn-focus-width;
 $input-focus-box-shadow:                $input-btn-focus-box-shadow;
 
@@ -570,7 +604,7 @@ $dropdown-min-width:                10rem;
 $dropdown-padding-y:                .5rem;
 $dropdown-spacer:                   .125rem;
 $dropdown-bg:                       $component-bg;
-$dropdown-border-color:             $border-color;
+$dropdown-border-color:             $component-border-color;
 $dropdown-border-radius:            $border-radius;
 $dropdown-border-width:             $border-width;
 $dropdown-divider-bg:               theme-color("primary");
@@ -603,6 +637,15 @@ $zindex-modal-backdrop:             1040;
 $zindex-modal:                      1050;
 $zindex-popover:                    1060;
 $zindex-tooltip:                    1070;
+
+:export {
+  zIndexDropdown: $zindex-dropdown;
+  zIndexSticky: $zindex-sticky;
+  zIndexFixed: $zindex-modal-backdrop;
+  zIndexModal: $zindex-modal;
+  zIndexPopover: $zindex-popover;
+  zIndexTooltip: $zindex-tooltip;
+}
 
 // Navs
 
@@ -830,7 +873,7 @@ $progress-bar-transition:           width .6s ease;
 // List group
 
 $list-group-bg:                     $component-bg;
-$list-group-border-color:           $border-color;
+$list-group-border-color:           $component-border-color;
 $list-group-border-width:           $border-width;
 $list-group-border-radius:          $border-radius;
 
@@ -840,10 +883,10 @@ $list-group-item-padding-x:         1.25rem;
 $list-group-hover-bg:               $component-hover-bg;
 $list-group-active-color:           $component-active-color;
 $list-group-active-bg:              $component-active-bg;
-$list-group-active-border-color:    theme-color("secondary");
+$list-group-active-border-color:    theme-color("primary");
 
 $list-group-disabled-color:         $component-disabled-color;
-$list-group-disabled-bg:            $list-group-bg;
+$list-group-disabled-bg:            $component-disabled-bg;
 
 $list-group-action-color:           $component-color;
 $list-group-action-hover-color:     $component-hover-color;

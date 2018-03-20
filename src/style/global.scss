@@ -1,4 +1,287 @@
-@import '~bootstrap/scss/mixins';
 @import 'variables';
+@import 'mixins';
 
 $navbar-height: $navbar-brand-height + 2 * ($navbar-brand-padding-y + $navbar-padding-y);
+
+input, textarea, select, button {
+  color: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+}
+
+@each $theme, $value in $theme-colors {
+  $text-color: color-yiq($value);
+  $value-hover: lighten($value, $component-hover-color-lighten);
+  $value-active: lighten($value, $component-active-color-lighten);
+  .btn-#{$theme} {
+    @include focus {
+      background-color: $value;
+    }
+    @include button-variant(
+      $value, bg-border-color($value),
+      $value-hover, bg-border-color($value-hover),
+      $value-active, bg-border-color($value-active));
+    @include hover {
+      color: $text-color;
+    }
+    @include btn-variant-active {
+      color: $text-color;
+    }
+  }
+  .btn-outline-#{$theme} {
+    @include focus {
+      background-color: $component-bg;
+    }
+    @include button-outline-variant($value, $value-hover,
+      $component-active-bg, $value-active);
+    background-color: $component-bg;
+    @include hover {
+      background-color: $component-hover-bg;
+    }
+    @include btn-variant-active {
+      color: $value-active;
+    }
+  }
+}
+
+.btn-ultra-dark {
+  border-color: bg-border-color($ultra-dark);
+  @include focus {
+    box-shadow: $btn-focus-box-shadow;
+  }
+  @include btn-variant-active {
+    @include focus {
+      box-shadow: $btn-focus-box-shadow;
+    }
+  }
+}
+
+.border-dashed {
+  border-style: dashed;
+}
+
+th {
+  font-weight: $headings-font-weight;
+}
+
+.form-control {
+  font-weight: $font-weight-base;
+}
+
+/*
+  This will hide the focus indicator if the element receives focus via the mouse,
+  but it will still show up on keyboard focus.
+*/
+.js-focus-visible :focus {
+  &:not(.focus-visible) {
+    outline: 0 !important;
+    box-shadow: none !important;
+  }
+  &.focus-visible {
+    position: relative;
+    z-index: 5 !important;
+  }
+}
+
+.container, .container-fluid {
+  // Use $grid-spacer horizontal padding to ensure width of rows in a container are evenly divisible by 12
+  padding-left: $grid-spacer;
+  padding-right: $grid-spacer;
+}
+
+// Custom gutter width classes `gutter[x|y]-[{breakpoint}-]{size}`
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .row {
+      @each $size, $width in $grid-gutter-widths-custom {
+        $value: ($width / 2);
+        &.gutter-x#{$infix}-#{$size}, &.gutter#{$infix}-#{$size} {
+          margin-left: -$value;
+          margin-right: -$value;
+          @include col {
+            padding-left: $value;
+            padding-right: $value;
+          }
+        }
+        &.gutter-y#{$infix}-#{$size}, &.gutter#{$infix}-#{$size} {
+          margin-top: -$value;
+          margin-bottom: -$value;
+          @include col {
+            padding-top: $value;
+            padding-bottom: $value;
+          }
+        }
+      }
+    }
+  }
+}
+
+%menu-action {
+  @include focus {
+    z-index: inherit;
+  }
+  @include hover {
+    z-index: 1;
+  }
+  @include not-disabled {
+    &:active {
+      z-index: 2;
+    }
+    &.active {
+      z-index: 3;
+      border-color: $primary;
+    }
+  }
+  @include disabled {
+    z-index: inherit;
+  }
+}
+
+.card {
+  > .list-group {
+    margin: -1px;
+  }
+
+  > .table {
+    margin-bottom: 0;
+    border: none;
+    thead {
+      tr:first-child {
+        th {
+          border-top: none;
+        }
+      }
+    }
+    th, td {
+      &:first-child {
+        border-left: none;
+      }
+    }
+  }
+}
+
+.card-header, .list-group-item {
+  > h1,h2,h3,h4,h5,h6 {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.dropdown-item {
+  @extend %menu-action;
+}
+
+.dropdown-divider {
+  border-color: $primary;
+}
+
+.list-group {
+  > .collapse {
+    margin-bottom: -1px;
+  }
+}
+
+.list-group-item-action {
+  @extend %menu-action;
+  @include focus {
+    &.active {
+      box-shadow: 0 0 0 $btn-focus-width rgba($primary, .5) !important;
+    }
+  }
+  transition: none !important;
+}
+
+.grid-cell {
+  border: solid $border-width $border-color;
+}
+
+.grid-group {
+  padding: 0;
+
+  > .row {
+    margin: (-$border-width) 0 0 (-$border-width);
+
+    @include col {
+      padding: 0;
+      overflow: visible;
+      > .grid-cell {
+        position: relative;
+        display: block;
+        padding: 0;
+        margin: 0;
+        width: calc(100% + #{$border-width});
+        height: calc(100% + #{$border-width});
+      }
+    }
+
+    @each $size, $width in $grid-gutter-widths-custom {
+      $value: ($width / 2);
+      &.gutter-x-#{$size}, &.gutter-#{$size} {
+        @include col {
+          > .grid-cell {
+            padding-left: $value;
+            padding-right: $value;
+          }
+        }
+      }
+      &.gutter-y-#{$size}, &.gutter-#{$size} {
+        @include col {
+          > .grid-cell {
+            padding-top: $value;
+            padding-bottom: $value;
+          }
+        }
+      }
+    }
+  }
+}
+
+.table-striped tbody {
+  td {
+    // border: none !important;
+  }
+}
+
+.table-accordian {
+  border-collapse: collapse;
+  tbody {
+    tr.accordian {
+      td {
+        padding: 0;
+        overflow: hidden;
+        border-top: none;
+        border-bottom: $component-border;
+      }
+      &:last-child {
+        td {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+  &.table-striped tbody {
+    tr {
+      background-color: transparent;
+      &:nth-of-type(4n+1) {
+        &, & + .accordian, & + .accordian:hover {
+          background-color: $component-accent-bg;
+        }
+      }
+    }
+  }
+  &.table-hover tbody {
+    cursor: pointer;
+    tr:hover {
+      &, & + .accordian {
+        background-color: $component-hover-bg;
+      }
+      &.accordian {
+        background-color: transparent;
+        cursor: default;
+      }
+    }
+  }
+}

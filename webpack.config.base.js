@@ -3,6 +3,7 @@ const path = require('path')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 const libraryName = 'FaastUI'
 const libraryId = 'faast-ui'
@@ -21,7 +22,6 @@ module.exports = (env) => {
   let outputFile
   let outputCssFile
   let cssIdentName
-  let minify
   if (env === 'production') {
     plugins.push(new UglifyJsPlugin({
       sourceMap: true,
@@ -33,12 +33,10 @@ module.exports = (env) => {
         mangle: true
       }
     }))
-    minify = true
     outputFile = 'js/[name].min.js'
     outputCssFile = 'css/[name].min.css'
     cssIdentName = '[name]-[hash:base64:6]'
   } else {
-    minify = false
     outputFile = 'js/[name].js'
     outputCssFile = 'css/[name].css'
     cssIdentName = '[name]__[local]__[hash:base64:6]'
@@ -46,7 +44,7 @@ module.exports = (env) => {
   plugins.push(new ExtractTextPlugin({
     filename: outputCssFile,
     allChunks: true,
-  }))
+  }), new OptimizeCssAssetsPlugin())
 
   const config = {
     entry: {
@@ -72,7 +70,7 @@ module.exports = (env) => {
           use: [{
             loader: 'css-loader', // translates CSS into CommonJS modules
             options: {
-              minify,
+              minimize: false, // CSS minification handled by OptimizeCssAssetsPlugin
               sourceMap: true,
               importLoaders: 2,
               localIdentName: cssIdentName
