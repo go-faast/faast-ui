@@ -115,6 +115,11 @@ $theme-colors: map-merge((
   }
 }
 
+$component-accent-color-lighten:    2.5%;
+$component-hover-color-lighten:     5%;
+$component-active-color-lighten:    7.5%;
+$component-border-color-lighten:    8%;
+
 // Set a specific jump point for requesting color jumps
 $theme-color-interval:      8%;
 
@@ -157,6 +162,19 @@ $spacers: map-merge((
   5: ($spacer * 3)
 ), $spacers);
 
+// Add entries for fractional rem spacers using the format ${numerator}_${denominator}r
+// Examples:
+// .pb-2 => padding-bottom: 2rem;
+// .mt-5_4 => margin-top: (5 / 4)rem;
+@for $i from 1 to 16 {
+  $spacers: map-merge($spacers, (
+    #{$i}r: ($i * $spacer), // Whole rem spacers
+    #{$i}_2r: ($i * $spacer / 2), // Half rem spacers
+    #{$i}_4r: ($i * $spacer / 4), // Quarters
+    #{$i}_8r: ($i * $spacer / 8), // Eighths 
+  ));
+}
+
 // This variable affects the `.h-*` and `.w-*` classes.
 $sizes: ();
 $sizes: map-merge((
@@ -182,7 +200,7 @@ $body-color:                $grey-light;
 
 $link-color:                theme-color("primary");
 $link-decoration:           none;
-$link-hover-color:          darken($link-color, 10%);
+$link-hover-color:          lighten($link-color, $component-hover-color-lighten);
 $link-hover-decoration:     underline;
 
 // Paragraphs
@@ -214,7 +232,7 @@ $grid-breakpoints: (
 // Define the maximum width of `.container` for different screen sizes.
 
 $container-max-widths: (
-  xs: map-get($grid-breakpoints, sm), // 100% width
+  xs: map-get($grid-breakpoints, sm) - 1px, // Achieve 100% width while avoiding bootstrap `-assert-ascending` warning
   sm: map-get($grid-breakpoints, sm),
   md: map-get($grid-breakpoints, md),
   lg: map-get($grid-breakpoints, lg),
@@ -245,11 +263,6 @@ $grid-gutter-width:           map-get($grid-gutter-widths-custom, 4);
 // Components
 //
 // Define common padding and border radius sizes and more.
-
-$component-accent-color-lighten:    2.5%;
-$component-hover-color-lighten:     5%;
-$component-active-color-lighten:    7.5%;
-$component-border-color-lighten:    8%;
 
 @function bg-border-color($color-bg) {
   @return lighten($color-bg, $component-border-color-lighten);
