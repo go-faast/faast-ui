@@ -14,7 +14,9 @@ h6, .h6 {
   font-weight: $font-weight-light;
 }
 
-
+.lh-0 {
+  line-height: 1 !important;
+}
 
 @each $theme, $value in $theme-colors {
   $text-color: color-yiq($value);
