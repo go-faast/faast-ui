@@ -9,6 +9,13 @@ input, textarea, select, button {
   font-style: inherit;
 }
 
+h6, .h6 {
+  color: $grey;
+  font-weight: $font-weight-light;
+}
+
+
+
 @each $theme, $value in $theme-colors {
   $text-color: color-yiq($value);
   $value-hover: lighten($value, $component-hover-color-lighten);
@@ -162,8 +169,8 @@ th {
   }
 }
 
-.card-header, .list-group-item {
-  > h1,h2,h3,h4,h5,h6 {
+.card-header, .list-group-item, td, th {
+  @include heading-child {
     &:last-child {
       margin-bottom: 0;
     }

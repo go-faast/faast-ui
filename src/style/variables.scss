@@ -120,15 +120,23 @@ $component-hover-color-lighten:     5%;
 $component-active-color-lighten:    7.5%;
 $component-border-color-lighten:    8%;
 
+$text-alpha:                0.9;
+$text-muted-alpha:          0.7;
+$text-disabled-alpha:       0.5;
+
+$text-color:                rgba($white, $text-alpha);
+$text-muted-color:          rgba($white, $text-muted-alpha);
+$text-disabled-color:       rgba($white, $text-disabled-alpha);
+
 // Set a specific jump point for requesting color jumps
 $theme-color-interval:      8%;
 
 // The yiq lightness value that determines when the lightness of color changes from "dark" to "light". Acceptable values are between 0 and 255.
-$yiq-contrasted-threshold: 120;
+$yiq-contrasted-threshold:  120;
 
 // Customize the light and dark text colors for use in our YIQ color contrast function.
-$yiq-text-dark: $black;
-$yiq-text-light: $white;
+$yiq-text-dark:   $grey-950;
+$yiq-text-light:  $text-color;
 
 // Options
 //
@@ -192,7 +200,7 @@ $sizes: map-merge((
 
 $body-bg:                   $bg-color;
 $body-accent-bg:            $bg-accent-color;
-$body-color:                $grey-light;
+$body-color:                rgba($white, $text-alpha);
 
 // Links
 //
@@ -250,10 +258,10 @@ $grid-columns:                12;
 $grid-gutter-widths-custom: (
   0: 0px,
   1: 2px,
-  2: ($grid-spacer / 2),
-  3: ($grid-spacer),
-  4: ($grid-spacer * 2),
-  5: ($grid-spacer * 3)
+  2: ($spacer * .5),
+  3: ($spacer),
+  4: ($spacer * 2),
+  5: ($spacer * 3)
 );
 
 // Default gutter size
@@ -333,7 +341,7 @@ $line-height-base:            1.5;
 $h1-font-size:                2.25rem;
 $h2-font-size:                1.75rem;
 $h3-font-size:                1.5rem;
-$h4-font-size:                1.25rem;
+$h4-font-size:                1.125rem;
 $h5-font-size:                1rem;
 $h6-font-size:                0.875rem;
 
