@@ -10,7 +10,7 @@ input, textarea, select, button {
 }
 
 h6, .h6 {
-  color: $grey;
+  @extend .text-muted;
   font-weight: $font-weight-light;
 }
 

@@ -367,7 +367,7 @@ $lead-font-weight:            $font-weight-normal;
 
 $small-font-size:             80%;
 
-$text-muted:                  $grey-medium;
+$text-muted:                  $text-muted-color;
 
 $blockquote-small-color:      $grey-medium;
 $blockquote-font-size:        $font-size-lg;
@@ -461,7 +461,7 @@ $btn-font-weight:             $font-weight-normal;
 $btn-box-shadow:              none;
 $btn-focus-width:             $input-btn-focus-width;
 $btn-focus-box-shadow:        $input-btn-focus-box-shadow;
-$btn-disabled-opacity:        .65;
+$btn-disabled-opacity:        $text-disabled-alpha;
 $btn-active-box-shadow:       none;
 
 $btn-link-disabled-color:     $grey-medium;
