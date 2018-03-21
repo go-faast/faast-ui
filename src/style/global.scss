@@ -283,13 +283,15 @@ th {
   }
   &.table-hover tbody {
     cursor: pointer;
-    tr:hover {
-      &, & + .accordian {
-        background-color: $component-hover-bg;
-      }
-      &.accordian {
-        background-color: transparent;
-        cursor: default;
+    tr {
+      @include hover {
+        &, & + .accordian {
+          background-color: $component-hover-bg;
+        }
+        &.accordian {
+          background-color: transparent;
+          cursor: default;
+        }
       }
     }
   }
