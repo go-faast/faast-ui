@@ -109,12 +109,6 @@ $theme-colors: map-merge((
 ), $theme-colors);
 // stylelint-enable
 
-@each $theme, $color in $theme-colors {
-  :export {
-    themeColor-#{$theme}: $color;
-  }
-}
-
 $component-accent-color-lighten:    2.5%;
 $component-hover-color-lighten:     5%;
 $component-active-color-lighten:    7.5%;
@@ -240,7 +234,7 @@ $grid-breakpoints: (
 $container-width-buffer: 32px;
 
 $container-max-widths: (
-  xs: map-get($grid-breakpoints, sm) - 1px, // Achieve 100% width while avoiding bootstrap `-assert-ascending` warning
+  // xs: map-get($grid-breakpoints, sm) - 1px, // Achieve 100% width while avoiding bootstrap `-assert-ascending` warning
   sm: map-get($grid-breakpoints, sm) - $container-width-buffer,
   md: map-get($grid-breakpoints, md) - $container-width-buffer,
   lg: map-get($grid-breakpoints, lg) - $container-width-buffer,
@@ -668,15 +662,6 @@ $zindex-modal:                      1050;
 $zindex-popover:                    1060;
 $zindex-tooltip:                    1070;
 
-:export {
-  zIndexDropdown: $zindex-dropdown;
-  zIndexSticky: $zindex-sticky;
-  zIndexFixed: $zindex-modal-backdrop;
-  zIndexModal: $zindex-modal;
-  zIndexPopover: $zindex-popover;
-  zIndexTooltip: $zindex-tooltip;
-}
-
 // Navs
 
 $nav-link-padding-y:                .5rem;
@@ -1005,3 +990,28 @@ $pre-scrollable-max-height:         340px;
 // Printing
 $print-page-size:                   a3;
 $print-body-min-width:              map-get($grid-breakpoints, "lg");
+
+
+@each $theme, $color in $theme-colors {
+  :export {
+    themeColor_#{$theme}: $color;
+  }
+}
+
+:export {
+  zIndex_dropdown: $zindex-dropdown;
+  zIndex_sticky: $zindex-sticky;
+  zIndex_fixed: $zindex-modal-backdrop;
+  zIndex_modal: $zindex-modal;
+  zIndex_popover: $zindex-popover;
+  zIndex_tooltip: $zindex-tooltip;
+}
+
+:export {
+  borderRadius: $border-radius;
+  borderWidth: $border-width;
+  textColor: $text-color;
+  textMutedColor: $text-muted-color;
+  textDisabledColor: $text-disabled-color;
+  fontFamilyBase: $font-family-base;
+}

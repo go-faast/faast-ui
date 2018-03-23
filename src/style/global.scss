@@ -9,10 +9,6 @@ input, textarea, select, button {
   font-style: inherit;
 }
 
-.fa {
-  vertical-align: middle;
-}
-
 h6, .h6 {
   @extend .text-muted;
   font-weight: $font-weight-light;
