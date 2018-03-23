@@ -9,6 +9,10 @@ input, textarea, select, button {
   font-style: inherit;
 }
 
+.fa {
+  vertical-align: middle;
+}
+
 h6, .h6 {
   @extend .text-muted;
   font-weight: $font-weight-light;
@@ -16,6 +20,10 @@ h6, .h6 {
 
 .lh-0 {
   line-height: 1 !important;
+}
+
+.text-spacing {
+  letter-spacing: 1px;
 }
 
 .btn-link {
@@ -109,12 +117,6 @@ th {
 
 .form-control {
   font-weight: $font-weight-base;
-}
-
-.container, .container-fluid {
-  // Use $grid-spacer horizontal padding to ensure width of rows in a container are evenly divisible by 12
-  padding-left: $grid-spacer;
-  padding-right: $grid-spacer;
 }
 
 // Custom gutter width classes `gutter[x|y]-[{breakpoint}-]{size}`
@@ -309,6 +311,9 @@ button.grid-cell {
         padding-right: $border-width;
         padding-bottom: $border-width;
       }
+    }
+    &.compact {
+      padding: $list-group-item-compact-padding-y $list-group-item-compact-padding-x;
     }
 
     &-action {
