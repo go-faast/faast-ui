@@ -658,6 +658,7 @@ $dropdown-header-color:             theme-color("primary");
 // of components dependent on the z-axis and are designed to all work together.
 
 $zindex-dropdown:                   1000;
+$zindex-overlay:                    1010;
 $zindex-sticky:                     1020;
 $zindex-fixed:                      1030;
 $zindex-modal-backdrop:             1040;
@@ -1037,6 +1038,7 @@ $print-body-min-width:              map-get($grid-breakpoints, "lg");
 
 :export {
   zIndex_dropdown: $zindex-dropdown;
+  zIndex_overlay: $zindex-overlay;
   zIndex_sticky: $zindex-sticky;
   zIndex_fixed: $zindex-modal-backdrop;
   zIndex_modal: $zindex-modal;

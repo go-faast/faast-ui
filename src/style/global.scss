@@ -525,7 +525,7 @@ button.grid-cell {
 // Used to overlay disabled or loading content
 .overlay {
   background-color: rgba($bg-color, $modal-backdrop-opacity);
-  z-index: $zindex-modal-backdrop;
+  z-index: $zindex-overlay;
   position: absolute;
   top: 0;
   right: 0;
