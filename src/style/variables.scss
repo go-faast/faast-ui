@@ -239,8 +239,6 @@ $grid-breakpoints: (
 $container-width-buffer: 32px;
 
 $container-max-widths: (
-  // xs: map-get($grid-breakpoints, sm) - 1px, // Achieve 100% width while avoiding bootstrap `-assert-ascending` warning
-  sm: map-get($grid-breakpoints, sm) - $container-width-buffer,
   md: map-get($grid-breakpoints, md) - $container-width-buffer,
   lg: map-get($grid-breakpoints, lg) - $container-width-buffer,
   xl: map-get($grid-breakpoints, xl) - $container-width-buffer
@@ -423,7 +421,7 @@ $table-striped-order:         even;
 // Shared variables that are reassigned to `$input-` and `$btn-` specific variables.
 
 $input-btn-padding-y:         .5rem;
-$input-btn-padding-x:         1.25rem;
+$input-btn-padding-x:         1rem;
 $input-btn-line-height:       $line-height-base;
 
 $input-btn-focus-width:       2px;
@@ -431,7 +429,7 @@ $input-btn-focus-color:       rgba($white, .3);
 $input-btn-focus-box-shadow:  0 0 0 $input-btn-focus-width $input-btn-focus-color;
 
 $input-btn-padding-y-sm:      .25rem;
-$input-btn-padding-x-sm:      .675rem;
+$input-btn-padding-x-sm:      .75rem;
 $input-btn-line-height-sm:    $line-height-sm;
 
 $input-btn-padding-y-lg:      .75rem;
@@ -669,9 +667,12 @@ $zindex-tooltip:                    1070;
 
 // Navs
 
-$nav-link-padding-y:                .75rem;
-$nav-link-padding-x:                0.5rem;
+$nav-link-padding-y:                0.75rem;
+$nav-link-padding-x:                0.75rem;
 $nav-link-disabled-color:           $text-disabled-color;
+$nav-link-line-height:              1.5;
+// Compute the navbar-brand padding-y so the navbar-brand will have the same height as navbar-text and nav-link
+$nav-link-height:                   ($font-size-base * $nav-link-line-height + $nav-link-padding-y * 2);
 
 $nav-tabs-border-color:             lighten($component-bg, 10%);
 $nav-tabs-border-width:             $border-width;
@@ -687,19 +688,20 @@ $nav-pills-link-active-bg:          $component-active-bg;
 
 // Navbar
 
+$navbar-expand:                     md;
+
 $navbar-padding-y:                  0.5rem;
+$navbar-padding-y-sm:               0.25rem;
 $navbar-padding-x:                  0.75rem;
 
 $navbar-nav-link-padding-x:         0.75rem;
 
 $navbar-brand-font-size:            1.25rem;
-// Compute the navbar-brand padding-y so the navbar-brand will have the same height as navbar-text and nav-link
-$nav-link-height:                   ($font-size-base * $line-height-base + $nav-link-padding-y * 2);
 $navbar-brand-height:               $navbar-brand-font-size * $line-height-base;
 $navbar-brand-padding-y:            ($nav-link-height - $navbar-brand-height) / 2;
 
-$navbar-toggler-padding-y:          .75rem;
-$navbar-toggler-padding-x:          .75rem;
+$navbar-toggler-padding-y:          0.75rem;
+$navbar-toggler-padding-x:          0.75rem;
 $navbar-toggler-font-size:          1rem;
 $navbar-toggler-border-radius:      0;
 
@@ -717,7 +719,10 @@ $navbar-light-disabled-color:       rgba($black, .3);
 $navbar-light-toggler-icon-bg:      str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$navbar-light-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"), "#", "%23");
 $navbar-light-toggler-border-color: transparent;
 
-$navbar-height: $navbar-brand-height + 2 * ($navbar-brand-padding-y + $navbar-padding-y);
+$navbar-brand-height:               $navbar-brand-height + 2 * $navbar-brand-padding-y;
+$navbar-content-height:             max($navbar-brand-height, $nav-link-height);
+$navbar-height:                     $navbar-content-height + 2 * $navbar-padding-y;
+$navbar-height-sm:                  $navbar-content-height + 2 * $navbar-padding-y-sm;
 
 // Pagination
 
@@ -758,7 +763,7 @@ $jumbotron-bg:                      $body-accent-bg;
 // Cards
 
 $card-spacer-y:                     .75rem;
-$card-spacer-x:                     1.25rem;
+$card-spacer-x:                     1rem;
 $card-border-width:                 $border-width;
 $card-border-radius:                $border-radius;
 $card-border-color:                 $border-color;
@@ -766,13 +771,13 @@ $card-inner-border-radius:          $card-border-radius;
 $card-cap-bg:                       $component-accent-bg;
 $card-bg:                           $component-bg;
 
-$card-img-overlay-padding:          1.25rem;
+$card-img-overlay-padding:          1rem;
 
 $card-group-margin:                 ($grid-gutter-width / 2);
 $card-deck-margin:                  $card-group-margin;
 
 $card-columns-count:                3;
-$card-columns-gap:                  1.25rem;
+$card-columns-gap:                  1rem;
 $card-columns-margin:               $card-spacer-y;
 
 
