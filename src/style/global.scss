@@ -1,8 +1,6 @@
 @import 'variables';
 @import 'mixins';
 
-$navbar-height: $navbar-brand-height + 2 * ($navbar-brand-padding-y + $navbar-padding-y);
-
 input, textarea, select, button {
   color: inherit;
   font-weight: inherit;
@@ -23,8 +21,45 @@ h6, .h6 {
 }
 
 .btn-link {
-  @include disabled {
-    text-decoration: none;
+  text-decoration: none !important;
+}
+
+.btn-link-plain {
+  @extend .btn-link;
+  padding: 0;
+  border-width: 0;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-nav {
+  .nav-link {
+    @include not-disabled {
+      &.active {
+        color: $primary;
+        border-color: $primary;
+      }
+    }
+  }
+}
+
+.navbar.fixed-top {
+  &.navbar-dark {
+    border-bottom: solid $border-width rgba($white, $border-color-alpha);
+    padding-bottom: calc(#{$navbar-padding-y} - #{$border-width});
+    box-shadow: $component-shadow;
+  }
+  & + .content {
+    margin-top: $navbar-height;
+  }
+  & + & {
+    top: $navbar-height;
+    z-index: ($zindex-fixed - 1);
+    & + .content {
+      margin-top: ($navbar-height * 2);
+    }
   }
 }
 
@@ -33,6 +68,12 @@ h6, .h6 {
     .btn {
       z-index: 6; // Ensure focused input doesn't overlap addons
     }
+  }
+}
+
+.dropdown-item {
+  @include hover {
+    cursor: pointer;
   }
 }
 
@@ -57,8 +98,8 @@ h6, .h6 {
 
 @each $theme, $value in $theme-colors {
   $text-color: color-yiq($value);
-  $value-hover: lighten($value, $component-hover-color-lighten);
-  $value-active: lighten($value, $component-active-color-lighten);
+  $value-hover: lighten($value, $hover-color-lighten);
+  $value-active: lighten($value, $active-color-lighten);
   .btn-#{$theme} {
     @include focus {
       background-color: $value;
@@ -272,11 +313,8 @@ button.grid-cell {
 }
 
 .dropdown-item {
+  border: solid $border-width transparent;
   @extend %menu-action;
-}
-
-.dropdown-divider {
-  border-color: $primary;
 }
 
 .list-group {

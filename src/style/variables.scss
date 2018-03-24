@@ -109,18 +109,23 @@ $theme-colors: map-merge((
 ), $theme-colors);
 // stylelint-enable
 
-$component-accent-color-lighten:    2.5%;
-$component-hover-color-lighten:     5%;
-$component-active-color-lighten:    7.5%;
-$component-border-color-lighten:    8%;
 
+$accent-color-lighten:    2.5%;
+$hover-color-lighten:     5%;
+$active-color-lighten:    7.5%;
+$border-color-lighten:    8%;
+$border-color-alpha:      ($border-color-lighten / 100%);
+
+// Material design recommended dark theme alphas https://material.io/guidelines/style/color.html#color-usability
 $text-alpha:                0.9;
 $text-muted-alpha:          0.7;
 $text-disabled-alpha:       0.5;
+$divider-color-alpha:       0.12;
 
 $text-color:                rgba($white, $text-alpha);
 $text-muted-color:          rgba($white, $text-muted-alpha);
 $text-disabled-color:       rgba($white, $text-disabled-alpha);
+$divider-color:             rgba($white, $divider-color-alpha);
 
 // Set a specific jump point for requesting color jumps
 $theme-color-interval:      8%;
@@ -202,7 +207,7 @@ $body-color:                rgba($white, $text-alpha);
 
 $link-color:                theme-color("primary");
 $link-decoration:           none;
-$link-hover-color:          lighten($link-color, $component-hover-color-lighten);
+$link-hover-color:          lighten($link-color, $hover-color-lighten);
 $link-hover-decoration:     underline;
 
 // Paragraphs
@@ -267,26 +272,26 @@ $grid-gutter-width:           map-get($grid-gutter-widths-custom, 4);
 // Define common padding and border radius sizes and more.
 
 @function bg-border-color($color-bg) {
-  @return lighten($color-bg, $component-border-color-lighten);
+  @return lighten($color-bg, $border-color-lighten);
 }
 
 $component-color:             $body-color;
-$component-disabled-color:    $grey-medium;
-$component-accent-color:      lighten($component-color, $component-accent-color-lighten);
-$component-hover-color:       lighten($component-color, $component-hover-color-lighten);
-$component-active-color:      lighten($component-color, $component-active-color-lighten);
+$component-disabled-color:    $text-disabled-color;
+$component-accent-color:      lighten($component-color, $accent-color-lighten);
+$component-hover-color:       lighten($component-color, $hover-color-lighten);
+$component-active-color:      lighten($component-color, $active-color-lighten);
 
 $component-bg:                $grey-ultra-dark;
 $component-disabled-bg:       $component-bg;
-$component-accent-bg:         lighten($component-bg, $component-accent-color-lighten);
-$component-hover-bg:          lighten($component-bg, $component-hover-color-lighten);
-$component-active-bg:         lighten($component-bg, $component-active-color-lighten);
+$component-accent-bg:         lighten($component-bg, $accent-color-lighten);
+$component-hover-bg:          lighten($component-bg, $hover-color-lighten);
+$component-active-bg:         lighten($component-bg, $active-color-lighten);
 
-$component-border-color:          lighten($component-bg, $component-border-color-lighten);
-$component-disabled-border-color: lighten($component-disabled-bg, $component-border-color-lighten);
-$component-accent-border-color:   lighten($component-accent-bg, $component-border-color-lighten);
-$component-hover-border-color:    lighten($component-hover-bg, $component-border-color-lighten);
-$component-active-border-color:   lighten($component-active-bg, $component-border-color-lighten);
+$component-border-color:          lighten($component-bg, $border-color-lighten);
+$component-disabled-border-color: lighten($component-disabled-bg, $border-color-lighten);
+$component-accent-border-color:   lighten($component-accent-bg, $border-color-lighten);
+$component-hover-border-color:    lighten($component-hover-bg, $border-color-lighten);
+$component-active-border-color:   lighten($component-active-bg, $border-color-lighten);
 
 $component-border-width:      1px;
 $component-border:            $component-border-width solid $component-border-color;
@@ -459,7 +464,7 @@ $btn-box-shadow:              $component-shadow;
 $btn-focus-width:             $input-btn-focus-width;
 $btn-focus-box-shadow:        $input-btn-focus-box-shadow;
 $btn-disabled-opacity:        $text-disabled-alpha;
-$btn-active-box-shadow:       $btn-box-shadow;
+$btn-active-box-shadow:       none;
 
 $btn-link-disabled-color:     $text-disabled-color;
 
@@ -631,8 +636,8 @@ $dropdown-bg:                       $component-bg;
 $dropdown-border-color:             $component-border-color;
 $dropdown-border-radius:            $border-radius;
 $dropdown-border-width:             $border-width;
-$dropdown-divider-bg:               theme-color("primary");
-$dropdown-box-shadow:               0 .5rem 1rem rgba($white, .175);
+$dropdown-divider-bg:               $divider-color;
+$dropdown-box-shadow:               $component-shadow;
 
 $dropdown-link-color:               $grey-light;
 $dropdown-link-hover-color:         $white;
@@ -664,9 +669,9 @@ $zindex-tooltip:                    1070;
 
 // Navs
 
-$nav-link-padding-y:                .5rem;
-$nav-link-padding-x:                1rem;
-$nav-link-disabled-color:           $component-disabled-color;
+$nav-link-padding-y:                .75rem;
+$nav-link-padding-x:                0.5rem;
+$nav-link-disabled-color:           $text-disabled-color;
 
 $nav-tabs-border-color:             lighten($component-bg, 10%);
 $nav-tabs-border-width:             $border-width;
@@ -682,35 +687,37 @@ $nav-pills-link-active-bg:          $component-active-bg;
 
 // Navbar
 
-$navbar-padding-y:                  ($spacer / 2);
-$navbar-padding-x:                  $spacer;
+$navbar-padding-y:                  0.5rem;
+$navbar-padding-x:                  0.75rem;
 
-$navbar-nav-link-padding-x:         .5rem;
+$navbar-nav-link-padding-x:         0.75rem;
 
-$navbar-brand-font-size:            $font-size-lg;
+$navbar-brand-font-size:            1.25rem;
 // Compute the navbar-brand padding-y so the navbar-brand will have the same height as navbar-text and nav-link
 $nav-link-height:                   ($font-size-base * $line-height-base + $nav-link-padding-y * 2);
 $navbar-brand-height:               $navbar-brand-font-size * $line-height-base;
 $navbar-brand-padding-y:            ($nav-link-height - $navbar-brand-height) / 2;
 
-$navbar-toggler-padding-y:          .25rem;
+$navbar-toggler-padding-y:          .75rem;
 $navbar-toggler-padding-x:          .75rem;
-$navbar-toggler-font-size:          $font-size-lg;
-$navbar-toggler-border-radius:      $btn-border-radius;
+$navbar-toggler-font-size:          1rem;
+$navbar-toggler-border-radius:      0;
 
-$navbar-dark-color:                 rgba($white, .5);
-$navbar-dark-hover-color:           rgba($white, .75);
-$navbar-dark-active-color:          $white;
+$navbar-dark-color:                 $text-disabled-color;
+$navbar-dark-hover-color:           $text-muted-color;
+$navbar-dark-active-color:          $text-color;
 $navbar-dark-disabled-color:        rgba($white, .25);
 $navbar-dark-toggler-icon-bg:       str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$navbar-dark-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"), "#", "%23");
-$navbar-dark-toggler-border-color:  rgba($white, .1);
+$navbar-dark-toggler-border-color:  transparent;
 
 $navbar-light-color:                rgba($black, .5);
 $navbar-light-hover-color:          rgba($black, .7);
 $navbar-light-active-color:         rgba($black, .9);
 $navbar-light-disabled-color:       rgba($black, .3);
 $navbar-light-toggler-icon-bg:      str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$navbar-light-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"), "#", "%23");
-$navbar-light-toggler-border-color: rgba($black, .1);
+$navbar-light-toggler-border-color: transparent;
+
+$navbar-height: $navbar-brand-height + 2 * ($navbar-brand-padding-y + $navbar-padding-y);
 
 // Pagination
 
@@ -938,7 +945,7 @@ $breadcrumb-item-padding:           .5rem;
 $breadcrumb-margin-bottom:          1rem;
 
 $breadcrumb-bg:                     $component-bg;
-$breadcrumb-divider-color:          $grey-medium;
+$breadcrumb-divider-color:          $divider-color;
 $breadcrumb-active-color:           $component-active-color;
 $breadcrumb-divider:                "/";
 
@@ -1014,4 +1021,5 @@ $print-body-min-width:              map-get($grid-breakpoints, "lg");
   textMutedColor: $text-muted-color;
   textDisabledColor: $text-disabled-color;
   fontFamilyBase: $font-family-base;
+  navbarHeight: $navbar-height;
 }
