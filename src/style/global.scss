@@ -188,7 +188,7 @@ h6, .h6 {
     outline: 0 !important;
     box-shadow: none !important;
   }
-  &.focus-visible {
+  &.focus-visible:not(.form-check-input) {
     position: relative;
     z-index: 5 !important;
   }
