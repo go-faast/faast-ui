@@ -280,7 +280,7 @@ $component-hover-color:       lighten($component-color, $hover-color-lighten);
 $component-active-color:      lighten($component-color, $active-color-lighten);
 
 $component-bg:                $grey-ultra-dark;
-$component-disabled-bg:       $component-bg;
+$component-disabled-bg:       darken($component-bg, 5%);
 $component-accent-bg:         lighten($component-bg, $accent-color-lighten);
 $component-hover-bg:          lighten($component-bg, $hover-color-lighten);
 $component-active-bg:         lighten($component-bg, $active-color-lighten);
@@ -503,12 +503,12 @@ $input-border-radius-lg:                $border-radius-lg;
 $input-border-radius-sm:                $border-radius-sm;
 
 $input-focus-bg:                        $component-accent-bg;
-$input-focus-border-color:              $component-border-color;
-$input-focus-color:                     $primary;
-$input-focus-width:                     $input-btn-focus-width;
+$input-focus-border-color:              $component-accent-border-color;
+$input-focus-color:                     $component-accent-color;
+$input-focus-width:                     0;
 $input-focus-box-shadow:                none;
 
-$input-placeholder-color:               $grey-medium;
+$input-placeholder-color:               $text-disabled-color;
 
 $input-height-border:                   $input-border-width * 2;
 

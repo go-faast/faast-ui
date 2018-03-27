@@ -33,6 +33,14 @@ h6, .h6 {
   border-width: 0;
 }
 
+.form-control {
+  @include focus {
+    &.flat {
+      box-shadow: none;
+    }
+  }
+}
+
 .nav-link {
   line-height: $nav-link-line-height;
   font-size: $nav-link-font-size;
