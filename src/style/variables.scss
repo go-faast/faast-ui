@@ -294,8 +294,8 @@ $component-active-border-color:   lighten($component-active-bg, $border-color-li
 $component-border-width:      1px;
 $component-border:            $component-border-width solid $component-border-color;
 
-$component-shadow-color:      rgba(0,0,0,0.4);
-$component-shadow:            0 3px 6px $component-shadow-color;
+$component-shadow-color:      rgba(0,0,0,0.3);
+$component-shadow:            0 2px 4px $component-shadow-color;
 
 $line-height-lg:              1.5;
 $line-height-sm:              1.5;
