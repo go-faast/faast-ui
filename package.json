@@ -15,7 +15,9 @@
   "sass": "src/style/index.scss",
   "scripts": {
     "build": "cross-env webpack",
-    "start": "cross-env webpack-dev-server --config ./webpack.config.dev.js --watch"
+    "start": "cross-env webpack-dev-server --config ./webpack.config.dev.js --watch",
+    "version": "npm run build && git add -Af dist",
+    "postversion": "git push && git push --tags"
   },
   "dependencies": {
     "focus-visible": "^4.1.1",
