@@ -16,8 +16,30 @@ h6, .h6 {
   line-height: 1 !important;
 }
 
-.text-spacing {
+.letter-spacing {
   letter-spacing: 1px;
+}
+
+.font-size-sm {
+  font-size: $font-size-sm;
+}
+
+.font-size-xs {
+  font-size: $font-size-xs;
+}
+
+.flex-col-center {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.word-break-all {
+  word-break: break-all;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 .btn-link {
