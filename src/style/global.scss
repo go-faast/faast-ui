@@ -8,8 +8,8 @@ input, textarea, select, button {
 }
 
 h6, .h6 {
-  @extend .text-muted;
-  font-weight: $font-weight-light;
+  color: $text-muted-color;
+  font-weight: $font-weight-base;
 }
 
 .lh-0 {

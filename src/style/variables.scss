@@ -334,11 +334,11 @@ $font-size-lg:                1.125rem;
 $font-size-sm:                0.875rem;
 $font-size-xs:                0.75rem;
 
-$font-weight-light:           200;
-$font-weight-normal:          300;
+$font-weight-light:           100;
+$font-weight-normal:          200;
 $font-weight-bold:            400;
 
-$font-weight-base:            $font-weight-light;
+$font-weight-base:            $font-weight-normal;
 $line-height-base:            1.5;
 
 $h1-font-size:                2.25rem;
