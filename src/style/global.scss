@@ -395,6 +395,10 @@ button.grid-cell {
 .card {
   box-shadow: $component-shadow;
 
+  > .alert {
+    border-width: 0;
+  }
+
   > .list-group {
     margin-left: (-$border-width);
     margin-right: (-$border-width);
