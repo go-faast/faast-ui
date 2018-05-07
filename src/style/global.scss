@@ -188,14 +188,15 @@ h6, .h6 {
 }
 
 .input-group {
-  &-prepend, &-append {
-    .btn {
-      z-index: 6; // Ensure focused input doesn't overlap addon buttons
-    }
-  }
   box-shadow: $input-box-shadow;
-  .form-control {
+  > .form-control {
     box-shadow: none;
+  }
+  & > &-prepend, & > &-append { 
+    > .btn {
+      z-index: 6; // Ensure focused input doesn't overlap addon buttons
+      box-shadow: none;
+    }
   }
 }
 
