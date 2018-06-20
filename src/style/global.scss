@@ -215,7 +215,7 @@ h6, .h6 {
     outline: 0 !important;
     box-shadow: none !important;
   }
-  &.focus-visible:not(.form-check-input) {
+  &.focus-visible:not(.form-check-input):not(.modal) {
     position: relative;
     z-index: 5 !important;
   }
