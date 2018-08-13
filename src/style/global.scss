@@ -165,15 +165,22 @@ h6, .h6 {
             display: none;
           }
           .navbar-nav {
+            display: block;
             .nav-link {
               font-size: $navbar-link-font-size-collapse;
               line-height: $navbar-link-line-height-collapse;
               padding: $navbar-link-padding-y-collapse $navbar-link-padding-x-collapse;
-              margin-right: $navbar-link-margin-x-collapse;
-              margin-left: $navbar-link-margin-x-collapse;
+              margin-right: $navbar-link-margin-r-collapse;
+              margin-left: $navbar-link-margin-l-collapse;
               &-icon {
                 font-size: $navbar-link-icon-size-collapse;
               }
+            }
+          }
+          .navbar-brand {
+            font-size: 1rem;
+            .mx-3 {
+              margin-right: .5rem !important
             }
           }
         }
