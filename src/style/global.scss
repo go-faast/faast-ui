@@ -53,6 +53,8 @@ h6, .h6 {
   @extend .btn-link;
   padding: 0;
   border-width: 0;
+  font-size: inherit !important;
+  vertical-align: baseline;
 }
 
 .form-control {
@@ -338,6 +340,9 @@ th {
       box-shadow: none;
       z-index: 3;
       border-color: $primary;
+      border-top: none;
+      border-right: none;
+      border-bottom: none;
       @include focus {
         box-shadow: 0 0 0 ($btn-focus-width + $border-width) rgba($primary, .5);
       }
